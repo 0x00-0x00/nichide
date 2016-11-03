@@ -5,19 +5,27 @@
 #include <unistd.h>
 
 #define MAX_BUF 1024
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
 
 /* Static Variables */
 char* author = "shemhazai";
-double version = 0.1;
+double version = 0.11;
 
 
-char* help_section = "HELP SECTION FOR NICHIDE\n"
+char* help_section = YEL "HELP SECTION FOR NICHIDE\n" RESET
         "Notes from author:\n"
         "This program was written by shemhazai in effort to mantain hardware addressing anonymous\n"
         "inside an insecure network and/or to avoid sysadmin detection.\n"
         "To use my program, you must passe the following parameters to it at command-line: \n"
         "\n-i <INTERFACE_NAME>\n    Interface to change mac.\n"
-        "\nAvailable modes: \n"
+        BLU "\nAvailable modes: \n" RESET
         "    -r\n        Random MAC mode.\n"
         "    -p\n        Original MAC mode.\n"
         "    -m MAC_ADDRESS\n        Manual MAC mode.\n";
@@ -115,7 +123,7 @@ void program_header(void)
 {
     char buf[MAX_BUF];
     sprintf(buf, ""
-            "|| NicHide v%.2f written by %s ||\n"
+            BLU "|| NicHide v%.2f written by %s ||\n" RESET
             "Revision: 25/10/2016\n", version, author);
     fprintf(stderr, buf);
 
@@ -135,8 +143,8 @@ int main(int argc, char* argv[])
 
    if(user_priv != 0x0)
    {
-       fprintf(stderr, "ERROR: You dont have enough privileges to work on interfaces configuration.\n");
-       fprintf(stderr, "This application was meant to be executed by root user only.\n");
+       fprintf(stderr, RED "ERROR: You dont have enough privileges to work on interfaces configuration.\n" RESET);
+       fprintf(stderr, RED "This application was meant to be executed by root user only.\n" RESET);
        return -1;
    }
 
@@ -144,7 +152,7 @@ int main(int argc, char* argv[])
 
     if(argc < 2)
     {
-        fprintf(stderr, "ERROR: Not enough arguments.\nInvoke --help argument to print the help section.\n");
+        fprintf(stderr, RED "ERROR: Not enough arguments.\nInvoke --help argument to print the help section.\n" RESET);
         return -1;
     }
 
@@ -159,20 +167,20 @@ int main(int argc, char* argv[])
     {
         if(!strcmp(argv[i], "-i")) //search for interface option
         {
-            fprintf(stdout, "Interface set ....: %s\n", argv[i+1]);
+            fprintf(stdout, "Interface set ....: " MAG "%s\n" RESET, argv[i+1]);
             k = argv[i+1];
             i++;
         }
 
         if(!strcmp(argv[i], "-r"))
         {
-            fprintf(stdout, "Mode set .........: RANDOM\n");
+            fprintf(stdout, "Mode set .........: " MAG "RANDOM\n" RESET);
             args->op_mode = 0x1;
         }
 
         if(!strcmp(argv[i], "-p"))
         {
-            fprintf(stdout, "Mode set .........: PERMANENT\n");
+            fprintf(stdout, "Mode set .........: " MAG "PERMANENT\n" RESET);
             args->op_mode = 0x2;
         }
 
@@ -180,10 +188,10 @@ int main(int argc, char* argv[])
         {
             if(argc < i+2)
             {
-                fprintf(stderr, "You need to specify MAC ADDRESS after '-m' parameter to use MANUAL MAC mode!\n");
+                fprintf(stderr, RED "You need to specify MAC ADDRESS after '-m' parameter to use MANUAL MAC mode!\n" RESET);
                 return -1;
             }
-            fprintf(stdout, "Mode set .........: MANUAL MAC\n");
+            fprintf(stdout, "Mode set .........: " MAG "MANUAL MAC\n" RESET);
             args->op_mode = 0x3;
             j = argv[i+1];
         }
@@ -193,7 +201,7 @@ int main(int argc, char* argv[])
 
     if(args->op_mode < 0)
     {
-        fprintf(stderr, "ERROR: No op_mode was set.\n");
+        fprintf(stderr, RED "ERROR: No op_mode was set.\n" RESET);
         return -1;
     }
 
@@ -209,9 +217,9 @@ int main(int argc, char* argv[])
 
             fprintf(stdout, "\nMAC address generation ......: ");
             if(strlen(j) != 0x0) {
-                fprintf(stdout, "OK.\n");
+                fprintf(stdout, GRN "OK.\n" RESET);
             }   else {
-                fprintf(stdout, "FAILED.\n");
+                fprintf(stdout, RED "FAILED.\n" RESET);
             }
 
             int r, s, t;
@@ -223,12 +231,12 @@ int main(int argc, char* argv[])
             fprintf(stdout, "NIC address alteration ......: ");
             if(r == 0x0 && s == 0x0 && t == 0x0)
             {
-                fprintf(stdout, "OK.\n");
-                fprintf(stdout, "Your new MAC address is %s\n", j);
+                fprintf(stdout, GRN "OK.\n" RESET);
+                fprintf(stdout, "Your new MAC address is " BLU "%s\n" RESET, j);
                 break;
             } else {
-                fprintf(stdout, "FAILED.\n");
-                fprintf(stderr, "Invalid address: %s\n", j);
+                fprintf(stdout, RED "FAILED.\n" RESET);
+                fprintf(stderr, "Invalid address: " BLU "%s\n" RESET, j);
                 sleep(1);
             }
         }
@@ -243,11 +251,11 @@ int main(int argc, char* argv[])
             fprintf(stdout, "NIC address alteration ......: ");
             if(r == 0x0 && s == 0x0 && t == 0x0)
             {
-                fprintf(stdout, "OK.\n");
+                fprintf(stdout, GRN "OK.\n" RESET);
                 fprintf(stdout, "Your permanent mac has been restored.\n");
                 break;
             } else {
-                fprintf(stdout, "FAILED.\n");
+                fprintf(stdout, RED "FAILED.\n" RESET);
                 fprintf(stderr, "Error changing permanent mac.\n");
                 sleep(1);
             }
@@ -264,12 +272,12 @@ int main(int argc, char* argv[])
             fprintf(stdout, "NIC address alteration ......: ");
             if(r == 0x0 && s == 0x0 && t == 0x0)
             {
-                fprintf(stdout, "OK.\n");
-                fprintf(stdout, "Your new mac is %s\n", j);
+                fprintf(stdout, GRN "OK.\n" RESET);
+                fprintf(stdout, "Your new mac is " BLU "%s\n" RESET, j);
                 break;
             } else {
-                fprintf(stdout, "FAILED.\n");
-                fprintf(stderr, "Invalid address: %s\n", j);
+                fprintf(stdout, RED "FAILED.\n" RESET);
+                fprintf(stderr, "Invalid address: " BLU "%s\n" RESET, j);
                 break;
             }
         }
