@@ -13,9 +13,11 @@
 ### Compiling and installation
     To compile the program, 'make' is required.
     The command to do it is the following:
-```python
+
+```
 make
 ```
+
 ```
 make install
 ```
