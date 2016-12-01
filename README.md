@@ -13,22 +13,34 @@
 ### Compiling and installation
     To compile the program, 'make' is required.
     The command to do it is the following:
-    `make`
-    `make install`
+```
+make
+```
+```
+make install
+```
     If the output does not report any problems, the program was successfully installed. To check, type:
-    `nichide --help`
+```
+nichide --help
+```
 
 ### Usage
     The program currently has 3 modes of operation:
 
 #### Random mac
     To generate a random mac and set it to a interface named 'eth0', type at terminal:
-    `nichide -i eth0 -r`
+```
+nichide -i eth0 -r
+```
 
 #### Original mac
     To restore the original (also known as permanent) address of the interface pointed above, type at terminal:
-    `nichide -i eth0 -p`
+```
+nichide -i eth0 -p
+```
 
 #### Manual mac
     To set an address AA:AA:AA:AA:AA:AA manually to the interface previously mentioned, type at terminal:
-    `nichide -i eth0 -m AA:AA:AA:AA:AA:AA`
+```
+nichide -i eth0 -m AA:AA:AA:AA:AA:AA
+```
