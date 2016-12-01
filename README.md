@@ -8,11 +8,11 @@
     ware address to use, causing all the packets sent from it to have this new, randomly generated address.
 
 ## Instructions
-    This section will tutor the user to compile and install the program into the system.
+This section will tutor the user to compile and install the program into the system.
 
 ### Compiling and installation
-    To compile the program, 'make' is required.
-    The command to do it is the following:
+To compile the program, 'make' is required.
+The command to do it is the following:
 
 ```
 make
