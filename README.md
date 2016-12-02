@@ -1,4 +1,5 @@
 # NicHide - network interface card anonimity tool
+[![Version][version-badge][version-link] ![MIT License][license-badge]
 -----
 
 ## Project information
