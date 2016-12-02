@@ -1,4 +1,4 @@
-# NicHide - network interface card anonimity tool ![GitHub release](https://img.shields.io/badge/version-0.11-blue.svg) ![license-badge](https://img.shields.io/badge/license-MIT-orange.svg)
+# NicHide - network card anonimity tool ![GitHub release](https://img.shields.io/badge/version-0.11-blue.svg) ![license-badge](https://img.shields.io/badge/license-MIT-orange.svg)
 -----
 
 ## Project information
