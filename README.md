@@ -1,4 +1,4 @@
-# NicHide - network interface card anonimity tool [![Version][version-badge][version-link] ![MIT License][license-badge]
+# NicHide - network interface card anonimity tool [![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/0x00-0x00/nichide)
 -----
 
 ## Project information
