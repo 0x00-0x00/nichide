@@ -123,8 +123,8 @@ void program_header(void)
 {
     char buf[MAX_BUF];
     sprintf(buf, ""
-            BLU "|| NicHide v%.2f written by %s ||\n" RESET
-            "Revision: 25/10/2016\n", version, author);
+            YEL "|| NicHide v%.2f written by %s ||\n" RESET
+            "Revision: 2016/12/04\n", version, author);
     fprintf(stderr, buf);
 
 }
@@ -232,11 +232,11 @@ int main(int argc, char* argv[])
             if(r == 0x0 && s == 0x0 && t == 0x0)
             {
                 fprintf(stdout, GRN "OK.\n" RESET);
-                fprintf(stdout, "Your new MAC address is " BLU "%s\n" RESET, j);
+                fprintf(stdout, "Your new MAC address is " GRN "%s\n" RESET, j);
                 break;
             } else {
                 fprintf(stdout, RED "FAILED.\n" RESET);
-                fprintf(stderr, "Invalid address: " BLU "%s\n" RESET, j);
+                fprintf(stderr, "Invalid address: " YEL "%s\n" RESET, j);
                 sleep(1);
             }
         }
@@ -273,11 +273,11 @@ int main(int argc, char* argv[])
             if(r == 0x0 && s == 0x0 && t == 0x0)
             {
                 fprintf(stdout, GRN "OK.\n" RESET);
-                fprintf(stdout, "Your new mac is " BLU "%s\n" RESET, j);
+                fprintf(stdout, "Your new mac is " GRN "%s\n" RESET, j);
                 break;
             } else {
                 fprintf(stdout, RED "FAILED.\n" RESET);
-                fprintf(stderr, "Invalid address: " BLU "%s\n" RESET, j);
+                fprintf(stderr, "Invalid address: " YEL "%s\n" RESET, j);
                 break;
             }
         }
